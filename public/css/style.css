@@ -1,0 +1,803 @@
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+
+.navbar {
+    z-index: 1;
+}
+
+.navbar-brand {
+    color: #42eb42 !important;
+}
+
+.btn-login {
+    background-color: #008100;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 400;
+    border: none;
+    text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+
+.navbar .dropdown-toggle::after {
+    vertical-align: middle;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    color: rgba(255, 255, 255, 0.75);
+    background-color: transparent;
+}
+
+.btn-login:hover {
+    background-color: #25b825;
+    color: #ffff;
+}
+
+.navbar.show {
+    background-color: black !important;
+    transition: background-color 0.3s ease;
+}
+
+#navbar {
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+}
+
+#navbar .dropdown-menu.scrolled-dropdown {
+    background-color: black;
+}
+
+#navbar.scrolled {
+    background-color: black;
+}
+
+#navbar.navbar-dark.show {
+    background-color: black;
+}
+
+#about h2 {
+    font-weight: 700;
+}
+
+/* Beranda */
+
+.hero-section {
+    background-image: url("/images/beranda/Hero.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#hero h1 {
+    font-family: "Amita", cursive !important;
+}
+
+.swiper-slide {
+    cursor: grab;
+}
+
+.swiper-slide:active {
+    cursor: grabbing;
+}
+
+#paketwisata h2 {
+    font-weight: 700;
+}
+
+.wisata-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wisata-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.wisata-card .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
+}
+
+.wisata-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.wisata-card:hover img {
+    transform: scale(1.1);
+}
+
+.wisata-card:hover .caption {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.swiper-wrapper {
+    -webkit-transition-timing-function: linear !important;
+    -o-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    height: auto !important;
+}
+
+.paket-card {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px 0;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paket-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.paket-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+}
+
+.paket-card-body {
+    padding: 20px 0 0;
+    text-align: left;
+}
+
+.paket-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 10px;
+}
+
+.paket-card-text {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 20px;
+}
+
+.learn-more {
+    font-size: 14px;
+    color: #28a745;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.learn-more i {
+    margin-left: 5px;
+}
+
+.learn-more:hover {
+    color: #1b6f2f;
+    text-decoration: none;
+}
+
+#wisata-kuliner h2 {
+    font-weight: 700;
+}
+
+.wisata-kuliner-card {
+    background-color: transparent;
+    border: none;
+}
+
+.wisata-kuliner-card img {
+    border-radius: 15px;
+}
+
+.wisata-kuliner-card .card-body {
+    text-align: center;
+}
+
+.wisata-kuliner-card .card-title {
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.wisata-kuliner-card .card-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#contact {
+    background-color: #efffef;
+}
+
+#contact h2 {
+    font-weight: 700;
+}
+
+#contact .underline {
+    width: 50px;
+    height: 4px;
+    background-color: #ffc107;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#contact .underline.blue {
+    background-color: #007bff;
+}
+
+#contact .form-control {
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid #000;
+}
+
+#contact .btn {
+    background-color: #008100;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    width: 100%;
+}
+
+#contact .btn:hover {
+    background-color: #25b825;
+}
+
+#gallery h2 {
+    font-weight: 700;
+}
+
+.gallery {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img {
+    width: 550px;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+#berita h2 {
+    font-weight: 700;
+}
+
+.berita-card {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.berita-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.berita-card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.berita-card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.berita-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.berita-card-text {
+    font-size: 0.9rem;
+    color: #666;
+    flex-grow: 1;
+}
+
+.footer {
+    background-color: #003820;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+/* Profil */
+#visi-misi h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+#visi-misi p,
+#visi-misi li {
+    font-size: 20px;
+}
+
+#visi-misi .image-container {
+    position: relative;
+}
+
+#visi-misi .image-container img {
+    max-width: 100%;
+}
+
+.video-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 0; /* Removed aspect ratio padding for direct height control */
+    max-width: 65%;
+    margin: 0 auto; /* Center align the video */
+}
+
+.video-container iframe {
+    border-radius: 8px; /* Rounded corners for a smoother look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+/*Desa Wisata*/
+#potensi img {
+    width: 80%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+#potensi .divider {
+    width: 100%;
+    height: 4px;
+    background-color: #e0e0e0;
+    margin: 40px 0;
+}
+
+#potensi h2 {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+#potensi p {
+    font-size: 16px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left p,
+.text-right p {
+    text-align: justify;
+}
+
+@media (max-width: 767.98px) {
+    .text-left,
+    .text-right {
+        text-align: justify !important;
+    }
+
+    .text-left h2,
+    .text-right h2 {
+        text-align: center;
+        padding-bottom: 0.3rem;
+    }
+}
+
+/* Desa Kuliner */
+#desa-kuliner .card,
+#potensi .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#desa-kuliner .card:hover,
+#potensi .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#desa-kuliner .card img,
+#potensi .card img {
+    width: 90%;
+    height: 180px;
+    object-fit: cover;
+    margin: 15px auto 0 auto;
+    border-radius: 10px;
+}
+
+#desa-kuliner .card-title,
+#potensi .card-title {
+    font-weight: 600;
+}
+
+#desa-kuliner .card-body,
+#potensi .card-body {
+    padding: 20px;
+}
+
+#desa-kuliner .card-body a,
+#potensi .card-body a {
+    color: #28a745;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+#desa-kuliner .card-body a i,
+#potensi .card-body a i {
+    margin-left: 5px;
+}
+
+/* Berita */
+#berita .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+#berita .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+}
+
+#berita .card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+#berita .img-container {
+    padding: 15px;
+    overflow: hidden;
+}
+
+#berita .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+#berita .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#berita .card-text {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+#berita .card-link {
+    color: #28a745;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#berita .card-link i {
+    margin-left: 5px;
+}
+
+/* Galeri */
+#galeri .image-card {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#galeri .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#galeri .image-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#galeri .image-card:hover .overlay {
+    opacity: 1;
+}
+
+#galeri .overlay h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#galeri .overlay p {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+/* Paket Tour */
+#paket-tour .card-custom {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+#paket-tour .card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#paket-tour .card-custom img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#paket-tour .btn-custom {
+    background-color: #28a745;
+    color: white;
+    border-radius: 0 0 15px 15px;
+}
+
+#paket-tour h6 {
+    font-weight: 600;
+}
+
+/* Form Paket */
+#form-paket .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#form-paket .form-title h3 {
+    margin-bottom: 5px;
+}
+
+#form-paket .order-details-title {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+#form-paket .order-details {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#form-paket .order-details .header {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+#form-paket .order-details table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#form-paket .btn-submit {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+}
+
+/* Detail Potensi Kuliner */
+#detail-kuliner .container,
+#detail-wisata .container {
+    margin-top: 20px;
+}
+
+#detail-kuliner .main-title,
+#detail-wisata .main-title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#detail-kuliner .image-container,
+#detail-wisata .image-container {
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+#detail-kuliner .main-image,
+#detail-kuliner .side-images,
+#detail-wisata .main-image,
+#detail-wisata .side-images {
+    height: 100%;
+}
+
+#detail-kuliner .main-image img,
+#detail-wisata .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#detail-kuliner .side-images,
+#detail-wisata .side-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#detail-kuliner .side-images img,
+#detail-wisata .side-images img {
+    width: 100%;
+    height: calc(50% - 5px);
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#detail-kuliner .card,
+#detail-wisata .card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
+}
+
+#detail-kuliner .card-header,
+#detail-wisata .card-header {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#detail-kuliner .card-header.green,
+#detail-wisata .card-header.green {
+    color: #28a745;
+}
+
+#detail-kuliner .card-body,
+#detail-wisata .card-body {
+    overflow-y: auto;
+    max-height: calc(100% - 56px);
+}
+
+#detail-kuliner .card-body p,
+#detail-kuliner .card-body a,
+#detail-wisata .card-body p,
+#detail-wisata .card-body a {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    #detail-kuliner .image-container,
+    #detail-wisata .image-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #detail-kuliner .main-image,
+    #detail-kuliner .side-images,
+    #detail-wisata .main-image,
+    #detail-wisata .side-images {
+        height: auto;
+        margin-bottom: 0.8rem;
+    }
+
+    #detail-kuliner .main-image img,
+    #detail-kuliner .side-images img,
+    #detail-wisata .main-image img,
+    #detail-wisata .side-images img {
+        height: auto;
+        object-fit: contain;
+    }
+
+    #detail-kuliner .side-images img:first-child {
+        margin-bottom: 0.8rem;
+    }
+
+    #detail-kuliner .card,
+    #detail-wisata .card {
+        margin-top: 20px;
+    }
+}
+
+/* detail artikel */
+
+#artikel-detail .article-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#artikel-detail .article-date {
+    color: green;
+}
+
+#artikel-detail .article-image {
+    margin-bottom: 20px;
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+
+#artikel-detail .article-content {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.btn-success {
+    background-color: #28a745 !important;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+
+.btn-success:hover {
+    background-color: #218838!important;
+}
