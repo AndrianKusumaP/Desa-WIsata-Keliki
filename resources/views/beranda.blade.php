@@ -252,6 +252,10 @@
                         <input class="form-control" id="name" name="nama" type="text" required />
                     </div>
                     <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" id="email" name="email" type="email" required />
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label" for="phone">Telephone</label>
                         <input class="form-control" id="phone" name="nomor_telepon" type="text" required />
                     </div>

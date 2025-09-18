@@ -19,6 +19,7 @@ class PesanController extends Controller
         // Validasi input dari form
         $validated = $request->validate([
             'nama' => 'required|string|max:100',
+            'email' => 'required|email|max:255',
             'nomor_telepon' => 'required|string|max:15',
             'pesan' => 'required|string',
         ]);
@@ -29,6 +30,12 @@ class PesanController extends Controller
 
         // Redirect atau tampilkan pesan sukses
         return redirect()->back();
+    }
+
+    public function show($id)
+    {
+        $pesan = Pesan::findOrFail($id);
+        return view('admin.pesan.show', compact('pesan'));
     }
 
     // Method untuk menghapus pesan

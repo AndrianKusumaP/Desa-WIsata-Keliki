@@ -544,12 +544,23 @@ body {
     height: 280px;
     border-radius: 15px;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tambah transisi */
+}
+
+#galeri .image-card:hover {
+    transform: scale(1.03); /* Membesarkan sedikit saat hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Tambah bayangan */
 }
 
 #galeri .image-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease; /* Bikin gambar juga bisa diberi efek */
+}
+
+#galeri .image-card:hover img {
+    transform: scale(1.05); /* Efek zoom pada gambar */
 }
 
 #galeri .image-card .overlay {

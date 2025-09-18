@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Galeri extends Model
 {
     use HasFactory;
 
-    protected $table = 'galeri'; // Nama tabel
+    protected $table = 'galeri';
 
-    // Tentukan atribut yang bisa diisi (fillable)
-    protected $fillable = ['judul', 'gambar', 'deskripsi'];
+    protected $fillable = ['judul', 'slug', 'deskripsi', 'image_paths'];
+
+    protected $casts = [
+        'image_paths' => 'array',
+    ];
+
+    public function setJudulAttribute($value)
+    {
+        $this->attributes['judul'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
 }

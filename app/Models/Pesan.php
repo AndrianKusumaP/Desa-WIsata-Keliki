@@ -15,6 +15,7 @@ class Pesan extends Model
     // Tentukan kolom yang bisa diisi (fillable)
     protected $fillable = [
         'nama',
+        'email',
         'nomor_telepon',
         'pesan',
     ];

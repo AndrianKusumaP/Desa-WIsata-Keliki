@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\GaleriImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
-    // Tampilkan semua data galeri
+    // Menampilkan semua galeri    
     public function index()
     {
         $galeri = Galeri::all();
+
+        foreach ($galeri as $item) {
+            $item->first_image = $item->image_paths[0] ?? null;
+        }
+
         return view('admin.galeri.index', compact('galeri'));
     }
 
@@ -20,97 +27,119 @@ class GaleriController extends Controller
         return Galeri::all();
     }
 
-    // Tampilkan view galeri
     public function showUserGaleri()
     {
-        $galeri = $this->getGaleri();  // Ambil data galeri
+        $galeri = Galeri::all();
+
+        foreach ($galeri as $item) {
+            $item->first_image = $item->image_paths[0] ?? null;
+        }
+
         return view('galeri', compact('galeri'));
     }
 
-    // Tampilkan form untuk membuat galeri baru
+    // Menampilkan form tambah galeri
     public function create()
     {
         return view('admin.galeri.create');
     }
 
-    // Simpan galeri baru ke database
+    // Menyimpan data galeri baru
     public function store(Request $request)
     {
-        // Validasi input
-        $validatedData = $request->validate([
+        $request->validate([
             'judul' => 'required|string|max:255',
-            'gambar' => 'required|image|max:10240', // Gambar harus berupa file image dengan ukuran maksimal 10MB
             'deskripsi' => 'required|string',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Simpan gambar ke folder 'public/images/galeri'
-        if ($request->hasFile('gambar')) {
-            $fileName = time() . '_' . $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->move(public_path('images/galeri'), $fileName);
-            $validatedData['gambar'] = $fileName;
+        $paths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images/galeri'), $filename);
+                $paths[] = 'images/galeri/' . $filename;
+            }
         }
 
-        Galeri::create($validatedData);
-        session()->flash('success', 'Data Galeri Berhasil Ditambahkan');
+        Galeri::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'image_paths' => $paths,
+        ]);
 
-        return redirect()->route('admin.galeri.index');
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil ditambahkan.');
     }
 
-    // Tampilkan form untuk edit galeri
+    // Menampilkan detail galeri
+    public function show($slug)
+    {
+        $galeri = Galeri::where('slug', $slug)->firstOrFail();
+        return view('galeri-detail', compact('galeri'));
+    }
+
+    // Menampilkan form edit galeri
     public function edit($id)
     {
         $galeri = Galeri::findOrFail($id);
         return view('admin.galeri.edit', compact('galeri'));
     }
 
-    // Update galeri di database
+    // Update data galeri
     public function update(Request $request, $id)
     {
-        // Validasi input
-        $validatedData = $request->validate([
+        $request->validate([
             'judul' => 'required|string|max:255',
-            'gambar' => 'nullable|image|max:10240', // Gambar hanya perlu di-update jika ada file baru
-            'deskripsi' => 'required|string',
+            'deskripsi' => 'nullable|string',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $galeri = Galeri::findOrFail($id);
 
-        // Jika ada gambar baru, hapus gambar lama dan upload yang baru
-        if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada gambar baru
-            if ($galeri->gambar && file_exists(public_path('images/galeri/' . $galeri->gambar))) {
-                unlink(public_path('images/galeri/' . $galeri->gambar));
-            }
+        $existingImages = $request->input('existing_images', []);
+        $currentImages = $galeri->image_paths ?? [];
 
-            $fileName = time() . '_' . $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->move(public_path('images/galeri'), $fileName);
-            $validatedData['gambar'] = $fileName;
-        } else {
-            // Jika gambar tidak diupload, gunakan gambar lama
-            $validatedData['gambar'] = $galeri->gambar;
+        $imagesToDelete = array_diff($currentImages, $existingImages);
+
+        foreach ($imagesToDelete as $imgPath) {
+            $fullPath = public_path($imgPath);
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+            }
         }
 
-        // Update data galeri di database
-        $galeri->update($validatedData);
-        session()->flash('success', 'Data Galeri Berhasil Diperbarui');
+        $newPaths = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images/galeri'), $filename);
+                $newPaths[] = 'images/galeri/' . $filename;
+            }
+        }
 
-        return redirect()->route('admin.galeri.index');
+        $galeri->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'image_paths' => array_values(array_merge($existingImages, $newPaths)),
+        ]);
+
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil diperbarui.');
     }
 
-    // Hapus galeri dari database
+    // Menghapus galeri beserta gambarnya
     public function destroy($id)
     {
         $galeri = Galeri::findOrFail($id);
 
-        // Hapus gambar dari folder jika ada
-        if ($galeri->gambar && file_exists(public_path('images/galeri/' . $galeri->gambar))) {
-            unlink(public_path('images/galeri/' . $galeri->gambar));
+        foreach ($galeri->image_paths ?? [] as $imgPath) {
+            $file_path = public_path($imgPath);
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
         }
 
-        // Hapus data dari database
         $galeri->delete();
-        session()->flash('success', 'Data Galeri Berhasil Dihapus');
 
-        return redirect()->route('admin.galeri.index');
+        return redirect()->route('admin.galeri.index')->with('success', 'Galeri berhasil dihapus.');
     }
 }

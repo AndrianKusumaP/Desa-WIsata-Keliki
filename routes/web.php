@@ -12,38 +12,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PotensiWisataController;
 use App\Http\Controllers\PotensiKulinerController;
 
-Route::get('/', function () {
-    return view('beranda');
-});
-
-Route::get('/profil', function () {
-    return view('profil');
-});
-
-Route::get('/potensi-wisata', function () {
-    return view('potensi-wisata');
-});
-
-Route::get('/potensi-kuliner', function () {
-    return view('potensi-kuliner');
-});
-
-Route::get('/artikel', function () {
-    return view('artikel');
-});
-
-Route::get('/galeri', function () {
-    return view('galeri');
-});
-
-Route::get('/tour', function () {
-    return view('tour');
-});
-
-Route::get('/paket-wisata', function () {
-    return view('paket-wisata');
-});
-
 Route::get('/login', function () {
     return view('admin.login');
 })->name('login');
@@ -101,7 +69,7 @@ Route::prefix('admin')->group(function () {
 
         // Route::get('/pesanan', [PesananController::class, 'index'])->name('admin.pesanan.index');
         Route::get('/pesan', [PesanController::class, 'index'])->name('admin.pesan.index');
-        Route::delete('/pesan/{id}', [PesanController::class, 'destroy'])->name('admin.pesan.destroy');
+        Route::get('/admin/pesan/{id}', [PesanController::class, 'show'])->name('admin.pesan.show');
     });
 });
 
@@ -111,6 +79,7 @@ Route::get('/potensi-kuliner', [PotensiKulinerController::class, 'showUserPotens
 Route::get('/potensi-kuliner/{slug}', [PotensiKulinerController::class, 'show'])->name('potensi-kuliner-detail');
 Route::get('/tour', [PaketTourController::class, 'showUserPaketTour'])->name('tour');
 Route::get('/galeri', [GaleriController::class, 'showUserGaleri'])->name('galeri');
+Route::get('galeri/{slug}', [GaleriController::class, 'show'])->name('galeri.show');
 Route::get('/artikel', [ArtikelController::class, 'showUserArtikel'])->name('artikel');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel-detail');
 // Route::get('/paket-tour/{slug}/pesanan', [PaketTourController::class, 'pesanan'])->name('paket-tour.pesanan');
